@@ -1,10 +1,8 @@
-/* eslint-disable no-console */
 import { showBlockFilter } from './filter.js';
-
 import {postIsOpen} from './fullPost.js';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const picturesContainer = document.querySelector('.pictures');
+const picturesBlock = document.querySelector('.pictures');
 
 const createPostPrewiew = (post) =>{
   const postPrewiew = pictureTemplate.cloneNode(true);
@@ -23,14 +21,13 @@ const createPostPrewiew = (post) =>{
 };
 
 const renderPosts = (posts, callback) => {
-
   const pictureFragment = document.createDocumentFragment();
 
   posts.forEach((post) => {
     pictureFragment.appendChild(createPostPrewiew(post));
   });
 
-  picturesContainer.appendChild(pictureFragment);
+  picturesBlock.appendChild(pictureFragment);
 
   showBlockFilter();
 
@@ -40,7 +37,7 @@ const renderPosts = (posts, callback) => {
 };
 
 const removePictures = () => {
-  const pictures = picturesContainer.querySelectorAll('.picture');
+  const pictures = picturesBlock.querySelectorAll('.picture');
 
   pictures.forEach((picture) => {
     picture.remove();
@@ -48,4 +45,3 @@ const removePictures = () => {
 };
 
 export{renderPosts, removePictures};
-

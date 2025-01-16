@@ -57,4 +57,4 @@ const onFilterClick = (evt) => {
 
 filterForm.addEventListener('click', onFilterClick);
 
-export{showBlockFilter,removeActiveFilter,rerender,onFilterClick};
+export{showBlockFilter};

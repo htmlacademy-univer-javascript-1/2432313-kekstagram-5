@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import '../vendor/nouislider/nouislider.js';
 
 const Effect = {
@@ -11,22 +10,14 @@ const Effect = {
 };
 
 const effectLevel = document.querySelector('.effect-level');
-const sliderElement = effectLevel.querySelector('.effect-level__slider');
+const slider = effectLevel.querySelector('.effect-level__slider');
 const sliderValue = effectLevel.querySelector('.effect-level__value');
-
 
 const imgPreview = document.querySelector('.img-upload__preview img');
 
 const imgEffect = {
   effect: 'original',
   value: 100,
-};
-
-const resetEffectImage = () => {
-  imgEffect.effect = 'original';
-  imgEffect.value = 100;
-
-  updateEffectImage();
 };
 
 const updateEffectImage = () => {
@@ -48,8 +39,15 @@ const updateEffectImage = () => {
   }
 };
 
+const resetEffectImage = () => {
+  imgEffect.effect = 'original';
+  imgEffect.value = 100;
+
+  updateEffectImage();
+};
+
 const createSlider = () => {
-  window.noUiSlider.create(sliderElement, {
+  window.noUiSlider.create(slider, {
     range: {
       min: Effect[imgEffect.effect].min,
       max: Effect[imgEffect.effect].max,
@@ -63,7 +61,7 @@ const createSlider = () => {
     },
   });
 
-  sliderElement.noUiSlider.on('update', (values, handle) => {
+  slider.noUiSlider.on('update', (values, handle) => {
     imgEffect.value = values[handle];
 
     updateEffectImage();
@@ -71,7 +69,7 @@ const createSlider = () => {
 };
 
 const updateOptionsSlider = (effect) => {
-  sliderElement.noUiSlider.updateOptions({
+  slider.noUiSlider.updateOptions({
     range: {
       min: Effect[effect].min,
       max: Effect[effect].max,
@@ -82,11 +80,10 @@ const updateOptionsSlider = (effect) => {
 };
 
 const destroySlider = () => {
-  sliderElement.noUiSlider.destroy();
+  slider.noUiSlider.destroy();
 };
 
 const onEffectsChange = (evt) => {
-
   const effect = evt.target.id.split('-')[1];
 
   imgEffect.effect = effect;
@@ -96,4 +93,3 @@ const onEffectsChange = (evt) => {
 };
 
 export { resetEffectImage, createSlider, destroySlider,onEffectsChange};
-

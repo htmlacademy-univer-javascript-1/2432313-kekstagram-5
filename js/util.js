@@ -1,4 +1,3 @@
-//модуль с функциями по числам
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const getRandomArrayElement = (array) => array[Math.floor(Math.random() * array.length)];
@@ -67,5 +66,5 @@ const getPhotoSrc = (fileChooser) => {
   });
 };
 
-export {getRandomInt,getRandomArrayElement,getUniqueValue,isEscEvent,getWordEnding,removeDuplicate,checkingMaxLength,debounce,shuffle,getPhotoSrc};
 
+export {getRandomInt,getRandomArrayElement,getUniqueValue,isEscEvent,getWordEnding,removeDuplicate,checkingMaxLength,debounce,shuffle,getPhotoSrc};
