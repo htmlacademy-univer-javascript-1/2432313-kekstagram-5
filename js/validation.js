@@ -1,15 +1,9 @@
-/* eslint-disable no-use-before-define */
 import { COMMENTS_MAX_LENGTH } from './data.js';
 import { getWordEnding } from './util.js';
 
 const Hashtags = {
   MAX_SYMBOLS: 20,
   MAX_COUNT: 5,
-};
-
-const Callbacks = {
-  'hashtag': (text) => validationHashtag(text),
-  'description': (text) => validationDescription(text),
 };
 
 const validationHashtag = (hashtagText) => {
@@ -68,6 +62,12 @@ const validationDescription = (text) => {
   }
 };
 
+const Callbacks = {
+  'hashtag': (text) => validationHashtag(text),
+  'description': (text) => validationDescription(text),
+};
+
+
 const validationText = (field, callback) => {
   field.setCustomValidity('');
   field.style.border = 'none';
@@ -84,4 +84,3 @@ const validationText = (field, callback) => {
 };
 
 export { validationText };
-

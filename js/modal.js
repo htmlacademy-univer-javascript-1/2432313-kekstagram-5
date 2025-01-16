@@ -1,5 +1,5 @@
 
-const MODAL_SHOW_TIME = 3000;
+const MODAL_SHOW_TIME = 1000;
 
 const receiveErrorTemplate = document.querySelector('#error-receive').content.querySelector('.error');
 const loadSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -30,7 +30,6 @@ const removeModal = () =>
 const showErrorReceive = (message) => {
   document.body.append(createModalFragment(receiveErrorTemplate, message));
   return removeModal();
-
 };
 
 const showSuccessLoad = () => {

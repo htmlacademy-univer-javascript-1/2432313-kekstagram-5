@@ -46,7 +46,6 @@ const COUNT_AVATAR = 6;
 const COUNT_RANDOM_POSTS = 10;
 const COMMENTS_MAX_LENGTH = 140;
 
-
 const arrayIds = [];
 
 const createComment = () =>{

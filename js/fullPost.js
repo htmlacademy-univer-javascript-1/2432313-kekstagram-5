@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-use-before-define */
 import {isEscEvent,getWordEnding} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -46,8 +44,10 @@ const createCommentsFragment = (comments) => {
   return commentsFragment;
 };
 
+let closeBigPicture = ()=>{};
+
 const onPopupEscKeydown = (evt) => {
-  if (isEscEvent(evt)){
+  if (isEscEvent(evt)) {
     evt.preventDefault();
     closeBigPicture();
   }
@@ -59,18 +59,27 @@ const onOverlayClick = (evt) => {
   }
 };
 
-const closeBigPicture = () => {
+closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
 
-  buttonCancel.removeEventListener('click',closeBigPicture);
-  document.removeEventListener('keydown',onPopupEscKeydown);
-  overlay.removeEventListener('click',onOverlayClick);
+  buttonCancel.removeEventListener('click', closeBigPicture);
+  document.removeEventListener('keydown', onPopupEscKeydown);
+  overlay.removeEventListener('click', onOverlayClick);
 };
 
+
+const setupBigPicture = () => {
+  buttonCancel.addEventListener('click', closeBigPicture);
+  document.addEventListener('keydown', onPopupEscKeydown);
+  overlay.addEventListener('click', onOverlayClick);
+};
+
+setupBigPicture();
+
 const renderComments = (comments) => {
-  const onCommentsLoaderClick = (comments) => {
-    renderComments(comments);
+  const onCommentsLoaderClick = (comment) => {
+    renderComments(comment);
   };
 
   if (comments.length > 0) {
@@ -94,7 +103,6 @@ const renderComments = (comments) => {
   checkTheHiddenLoadComments(true);
 };
 
-
 const renderPost = (post) => {
   bigPicture.querySelector('.big-picture__img img').src = post.url;
   social.querySelector('.likes-count').textContent = post.likes;
@@ -104,7 +112,6 @@ const renderPost = (post) => {
   socialComments.innerHTML = '';
   commentsCountLoaded = 0;
   renderComments(post.comments);
-
 };
 
 const postIsOpen = (post) => {
